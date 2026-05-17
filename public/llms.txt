@@ -1,0 +1,36 @@
+# Energy Planner Ltd
+
+> Independent UK business energy procurement and audit specialist based in Lytham St Annes, Lancashire. Whole-of-market broker for fixed-price and risk-managed flexible contracts, bill validation, energy audits, ESOS Phase 4 and SECR compliance. Broker fee disclosed on every quote.
+
+## Core services
+
+- [Compare Business Energy](https://energyplanner.co.uk/compare-business-energy): Whole-of-market UK business energy comparison across every B2B supplier currently quoting.
+- [Compare Business Energy Prices](https://energyplanner.co.uk/compare-business-energy-prices): Live business energy prices compared line by line with disclosed broker uplift.
+- [Business Electricity](https://energyplanner.co.uk/business-electricity): Single-phase, three-phase and half-hourly UK business electricity quotes.
+- [Business Gas](https://energyplanner.co.uk/business-gas): Business gas comparison from micro businesses to multi-site flex baskets.
+- [Energy Procurement](https://energyplanner.co.uk/energy-procurement): Risk-managed flexible procurement, click strategies, basket flex for businesses with significant energy spend.
+- [Energy Audits](https://energyplanner.co.uk/energy-audits): Energy bill validation, recovery of historic overcharges, ESOS Phase 4 and SECR compliance support.
+- [Business Energy Broker](https://energyplanner.co.uk/business-energy-broker): Independent UK business energy broker with transparent fee disclosure.
+
+## Company
+
+- [About](https://energyplanner.co.uk/about): Why Energy Planner exists and what independent broker actually means.
+- [Team](https://energyplanner.co.uk/team): The people behind Energy Planner.
+- [How we get paid](https://energyplanner.co.uk/how-we-get-paid): Full transparency on the broker fee mechanism with worked example.
+- [Contact](https://energyplanner.co.uk/contact): 5-step quote request form, phone, email, address.
+
+## Guides
+
+- [How to compare business energy suppliers in 2026](https://energyplanner.co.uk/guides/how-to-compare-business-energy-suppliers-2026): Step-by-step UK comparison walkthrough.
+- [Fixed vs flexible business energy contracts](https://energyplanner.co.uk/guides/fixed-vs-flexible-business-energy-contracts): When each contract structure makes sense and the volume thresholds.
+
+## Key facts
+
+- Company name: Energy Planner Ltd
+- Companies House number: 15822406
+- Registered office: Jubilee House, East Beach, Lytham St. Annes, FY8 5FT
+- Phone: 01253 928 928
+- Email: enquiries@energyplanner.co.uk
+- Coverage: UK-wide, all distribution areas
+- Broker fee disclosure: line-by-line on every quote in pence per kWh
+- Regulatory framework: aligned to Ofgem TPI Code of Practice

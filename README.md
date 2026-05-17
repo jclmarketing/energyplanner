@@ -1,36 +1,71 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Energy Planner
 
-## Getting Started
+Marketing site for Energy Planner Ltd — independent UK business energy procurement, audits and bill validation. Built by JCL Marketing / Orriq.
 
-First, run the development server:
+## Stack
 
-```bash
+- Next.js 16 (App Router, React 19, Turbopack)
+- TypeScript
+- Tailwind CSS v4 (CSS-first config in `globals.css`)
+- Framer Motion + custom `Reveal` IntersectionObserver
+- Supabase (Hostinger self-hosted, `t_energyplanner` tenant) for quote form submissions
+- EmailIt for transactional email
+- Vercel for hosting
+
+## Local development
+
+```
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+# http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Environment variables
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Required for production form submissions (optional in dev — submissions log to console without them):
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+SUPABASE_URL=https://srv1581646.hstgr.cloud
+SUPABASE_SERVICE_KEY=<service-role-key>
+EMAILIT_API_KEY=<emailit-api-key>
+```
 
-## Learn More
+The quote API at `src/app/api/quote/route.ts` writes to the `leads` table under the `t_energyplanner` schema profile, mirroring the multi-tenant pattern used by other JCL projects on the same Hostinger Supabase instance.
 
-To learn more about Next.js, take a look at the following resources:
+## SEO foundations
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Every page ships with:
+- Unique title + meta description
+- Open Graph + Twitter card metadata
+- BreadcrumbList JSON-LD
+- Service / FAQPage / Article JSON-LD where relevant
+- Canonical URL
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Site-wide:
+- `/sitemap.xml` (auto-generated from `app/sitemap.ts`)
+- `/robots.txt` (auto-generated)
+- `/llms.txt` (markdown index for AI crawlers)
 
-## Deploy on Vercel
+## Adding a new guide
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. Add metadata to `src/lib/guides.ts`
+2. Create `src/content/guides/my-new-guide.tsx` exporting a body component
+3. Wire it into `src/content/guides/index.tsx`
+4. Route `/guides/my-new-guide` auto-generates
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Pillar pages
+
+Use the `<PillarPage />` component from `src/components/sections/PillarPage.tsx`. See `src/app/business-gas/page.tsx` for the canonical example.
+
+## Deferred for future phases
+
+- Sector pages: `/business-energy/manufacturing/`, `/hospitality/`, `/care-homes/`
+- Local pages: `/business-energy-broker/lancashire/`, `/blackpool/`, `/preston/`, `/north-west/`
+- Remaining 4 cornerstone guides (currently stubs with answer blocks)
+- Trustpilot widget once profile is registered
+- Real accreditation badges once UIA approved
+- OG image generation
+
+## Production deploy
+
+Pushed to GitHub `jclmarketing/energyplanner`. Auto-deploys to Vercel on push to `main`. Preview URL only. Do not point DNS at this until client approval.
