@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, ShieldCheck, LineChart, ClipboardCheck, FileSearch, Zap, Flame, Phone, MoveUpRight } from "lucide-react";
+import { ArrowRight, LineChart, ClipboardCheck, FileSearch, Zap, Flame, Phone, MoveUpRight, ShieldCheck } from "lucide-react";
 import { Reveal } from "@/components/ui/Reveal";
 import { SupplierMarquee } from "@/components/ui/SupplierMarquee";
 import { CtaBlock } from "@/components/sections/CtaBlock";
@@ -15,10 +15,10 @@ export const metadata: Metadata = {
 };
 
 const faqs = [
-  { q: "What does Energy Planner actually do?", a: "We help UK businesses procure electricity and gas contracts on better terms than they can get going direct, validate the bills that follow, and design risk-managed buying strategies for businesses with significant energy spend." },
-  { q: "How are you paid?", a: "Suppliers pay us a small uplift per unit (pence per kWh) when we place a contract with them. That uplift is disclosed in writing on every quote we issue. We do not charge the business directly. See How We Get Paid for full detail." },
+  { q: "How are you paid?", a: "Suppliers pay us a small uplift per unit (pence per kWh) when we place a contract. That uplift is disclosed in writing on every quote. We do not charge the business directly." },
   { q: "Are you tied to specific suppliers?", a: "No. We are an independent whole-of-market broker. We compare every licensed B2B supplier currently quoting, not a curated few." },
-  { q: "How long does the process take?", a: "Most quotes come back within one to three working days of receiving your LOA and a recent bill. Switching takes 4 to 6 weeks to go live, governed by industry standard timelines." },
+  { q: "How long does the process take?", a: "Most quotes return within one to three working days. Switching takes 4 to 6 weeks to go live." },
+  { q: "Can I start in contract?", a: "Yes. Most suppliers let us lock in renewal pricing up to 12 months ahead. The earlier we look, the more pricing windows you have." },
 ];
 
 export default function HomePage() {
@@ -26,57 +26,50 @@ export default function HomePage() {
     <>
       <JsonLd data={[breadcrumbSchema([{ label: "Home", href: "/" }]), faqSchema(faqs)]} />
 
-      {/* HERO — editorial mixed-type composition */}
+      {/* HERO — split editorial composition with full-bleed image */}
       <section className="relative overflow-hidden">
-        <div aria-hidden className="absolute top-0 right-0 w-[60vw] h-[60vw] max-w-[900px] max-h-[900px] -translate-y-1/4 translate-x-1/4 rounded-full opacity-60 blur-3xl"
-          style={{ background: "radial-gradient(closest-side, rgba(245,158,11,0.35), transparent 70%)" }} />
+        <div className="grid lg:grid-cols-12 min-h-[88vh] lg:min-h-[760px]">
+          {/* Left: type column */}
+          <div className="lg:col-span-7 flex flex-col justify-between relative bg-[color:var(--color-bone)] z-10">
+            <div aria-hidden className="absolute top-0 right-0 w-[55vw] h-[55vw] max-w-[700px] max-h-[700px] -translate-y-1/4 translate-x-1/4 rounded-full opacity-50 blur-3xl"
+              style={{ background: "radial-gradient(closest-side, rgba(245,158,11,0.32), transparent 70%)" }} />
 
-        <div className="container-x relative pt-24 lg:pt-32 pb-16 lg:pb-24">
-          {/* Top meta row */}
-          <div className="grid grid-cols-12 gap-4 mb-12 lg:mb-24">
-            <div className="col-span-12 lg:col-span-6 flex items-center gap-3 text-xs uppercase tracking-[0.22em] text-[color:var(--color-ink-muted)]">
-              <span className="inline-block w-2 h-2 rounded-full bg-[color:var(--color-amber)]" />
-              <span>Whole of market · Fees disclosed · Lytham St Annes</span>
-            </div>
-            <div className="hidden lg:flex col-span-6 items-center justify-end gap-8 text-xs uppercase tracking-[0.22em] text-[color:var(--color-ink-muted)]">
-              <span>Est. 2024</span>
-              <span>Companies House <span className="text-[color:var(--color-ink)] font-medium">15822406</span></span>
-            </div>
-          </div>
+            <div className="relative px-6 lg:px-16 pt-20 pb-10 lg:py-24">
+              <Reveal>
+                <div className="flex items-center gap-3 text-xs uppercase tracking-[0.22em] text-[color:var(--color-ink-muted)] mb-12">
+                  <span className="inline-block w-2 h-2 rounded-full bg-[color:var(--color-amber)]" />
+                  <span>Whole of market · Fees disclosed · Lytham St Annes</span>
+                </div>
+              </Reveal>
 
-          {/* The headline — mixed serif/sans editorial */}
-          <Reveal>
-            <h1 className="leading-[0.95] tracking-[-0.04em] text-[clamp(3rem,9vw,8rem)] font-medium max-w-[18ch]">
-              Energy
-              <br />
-              <span className="font-display italic font-normal text-[color:var(--color-amber-deep)]">planning</span> for
-              <br />
-              people who
-              <br />
-              actually <span className="font-display italic font-normal">sign</span> the
-              <br />
-              <span className="font-sans">contracts.</span>
-            </h1>
-          </Reveal>
-
-          {/* Sub + CTA + side meta */}
-          <div className="grid grid-cols-12 gap-x-8 gap-y-12 mt-16 lg:mt-20">
-            <div className="col-span-12 lg:col-span-7">
               <Reveal delay={0.05}>
-                <p className="text-xl lg:text-2xl text-[color:var(--color-ink-soft)] leading-snug font-light max-w-[44ch]">
-                  Whole-of-market procurement, bill validation and risk-managed flex contracts.
-                  Built for UK businesses that buy energy like they buy everything else: with discipline,
-                  not under deadline pressure.
+                <h1 className="font-display leading-[0.96] tracking-[-0.035em] text-[clamp(2.75rem,7vw,5.5rem)] text-balance">
+                  Energy<br />
+                  <span className="italic text-[color:var(--color-amber-deep)]">planning</span>{" "}
+                  for the<br />
+                  people who<br />
+                  <span className="italic">sign</span> the contracts.
+                </h1>
+              </Reveal>
+
+              <Reveal delay={0.1}>
+                <p className="mt-10 max-w-md text-lg text-[color:var(--color-ink-soft)] leading-relaxed">
+                  Whole-of-market procurement, bill validation and risk-managed flex. Built for UK businesses that buy energy with discipline, not under deadline pressure.
                 </p>
               </Reveal>
-              <Reveal delay={0.1}>
-                <div className="mt-10 flex flex-wrap items-center gap-4">
-                  <Link href="/contact#quote" className="btn btn-primary text-base px-7 py-4">
+
+              <Reveal delay={0.15}>
+                <div className="mt-10 flex flex-wrap items-center gap-5">
+                  <Link
+                    href="/contact#quote"
+                    style={{ color: "#FFFFFF", backgroundColor: "var(--color-ink)" }}
+                    className="inline-flex items-center gap-3 hover:bg-[color:var(--color-ink-soft)] font-medium px-7 py-4 rounded-full text-base transition-colors"
+                  >
                     Get a quote
                     <ArrowRight size={16} />
                   </Link>
-                  <a href={`tel:${site.phoneE164}`} className="group inline-flex items-center gap-3 text-base font-medium">
-                    <span className="w-10 h-10 rounded-full border border-[color:var(--color-line)] flex items-center justify-center group-hover:bg-[color:var(--color-bone-warm)] group-hover:border-[color:var(--color-ink)] transition-all">
+                  <a href={`tel:${site.phoneE164}`} className="group inline-flex items-center gap-3 text-[color:var(--color-ink)] font-medium">
+                    <span className="w-11 h-11 rounded-full border border-[color:var(--color-line)] flex items-center justify-center group-hover:bg-[color:var(--color-bone-warm)] transition-all">
                       <Phone size={14} />
                     </span>
                     <span>{site.phone}</span>
@@ -85,30 +78,46 @@ export default function HomePage() {
               </Reveal>
             </div>
 
-            {/* Right column: live market commentary card */}
-            <div className="col-span-12 lg:col-span-5 lg:pl-10">
-              <Reveal delay={0.15}>
-                <div className="relative h-full">
-                  <div className="absolute -top-3 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[color:var(--color-amber)] to-transparent opacity-50" />
-                  <p className="text-xs uppercase tracking-[0.22em] text-[color:var(--color-ink-muted)] mb-5">Market signal · this week</p>
-                  <div className="space-y-4 font-display text-2xl lg:text-3xl tracking-tight text-[color:var(--color-ink)] leading-snug">
-                    <p>
-                      Wholesale electricity{" "}
-                      <span className="text-[color:var(--color-amber-deep)] italic">softening</span>
-                      , gas{" "}
-                      <span className="text-[color:var(--color-amber-deep)] italic">volatile</span>
-                      .
-                    </p>
-                  </div>
-                  <p className="mt-6 text-sm text-[color:var(--color-ink-muted)] leading-relaxed">
-                    If your renewal lands in the next 6 to 12 months, this is a watching brief, not a panic. The window to lock pricing has opened on most meter types.
+            {/* Bottom strip with key facts */}
+            <div className="relative border-t border-[color:var(--color-line)] px-6 lg:px-16 py-6 lg:py-8 bg-[color:var(--color-bone)]">
+              <div className="grid grid-cols-3 gap-4 lg:gap-8">
+                <div>
+                  <p className="text-xs uppercase tracking-[0.18em] text-[color:var(--color-ink-muted)]">Suppliers</p>
+                  <p className="mt-1 font-display text-2xl lg:text-3xl tracking-tight">12<span className="text-[color:var(--color-amber-deep)]">+</span></p>
+                </div>
+                <div>
+                  <p className="text-xs uppercase tracking-[0.18em] text-[color:var(--color-ink-muted)]">Quote turnaround</p>
+                  <p className="mt-1 font-display text-2xl lg:text-3xl tracking-tight">48<span className="text-[color:var(--color-amber-deep)] text-lg">hr</span></p>
+                </div>
+                <div>
+                  <p className="text-xs uppercase tracking-[0.18em] text-[color:var(--color-ink-muted)]">Charged to you</p>
+                  <p className="mt-1 font-display text-2xl lg:text-3xl tracking-tight">£0</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Right: full-bleed photography */}
+          <div className="lg:col-span-5 relative min-h-[400px] lg:min-h-full bg-[color:var(--color-ink)]">
+            <img
+              src="https://images.unsplash.com/photo-1581094288338-2314dddb7ece?w=1400&q=85&auto=format&fit=crop"
+              alt="Solar array at golden hour, representing the modern UK energy landscape Energy Planner navigates"
+              loading="eager"
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+            <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, rgba(10,22,40,0.45) 0%, rgba(10,22,40,0.1) 50%, rgba(245,158,11,0.18) 100%)" }} />
+
+            {/* Floating market signal card over image */}
+            <div className="absolute bottom-6 left-6 right-6 lg:bottom-10 lg:left-10 lg:right-10">
+              <Reveal delay={0.2}>
+                <div className="rounded-2xl bg-white/95 backdrop-blur-md p-6 lg:p-8 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.5)]">
+                  <p className="text-[10px] uppercase tracking-[0.24em] text-[color:var(--color-amber-deep)] font-semibold">Market signal · this week</p>
+                  <p className="mt-3 font-display text-xl lg:text-2xl tracking-tight leading-snug">
+                    Wholesale electricity <span className="italic text-[color:var(--color-amber-deep)]">softening</span>, gas <span className="italic text-[color:var(--color-amber-deep)]">volatile</span>.
                   </p>
-                  <div className="mt-8 pt-6 border-t border-[color:var(--color-line)] flex items-center justify-between text-xs uppercase tracking-[0.18em] text-[color:var(--color-ink-muted)]">
-                    <span>Updated weekly</span>
-                    <Link href="/guides" className="inline-flex items-center gap-1 text-[color:var(--color-ink)] hover:text-[color:var(--color-amber-deep)]">
-                      Market guides <MoveUpRight size={12} />
-                    </Link>
-                  </div>
+                  <p className="mt-3 text-sm text-[color:var(--color-ink-muted)] leading-relaxed">
+                    Renewing in the next 6–12 months? The window to lock pricing is open on most meter types.
+                  </p>
                 </div>
               </Reveal>
             </div>
@@ -118,22 +127,39 @@ export default function HomePage() {
 
       <SupplierMarquee />
 
-      {/* BIG STAT / PHILOSOPHY */}
-      <section className="py-24 lg:py-32 border-b border-[color:var(--color-line)]">
+      {/* POSITION STATEMENT with image collage */}
+      <section className="py-24 lg:py-32">
         <div className="container-x">
-          <div className="grid grid-cols-12 gap-6 items-end">
-            <div className="col-span-12 lg:col-span-2">
-              <p className="eyebrow">01</p>
-              <p className="text-xs uppercase tracking-[0.22em] text-[color:var(--color-ink-muted)] mt-2">Position</p>
-            </div>
-            <div className="col-span-12 lg:col-span-10">
+          <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+            <div className="lg:col-span-7">
+              <p className="eyebrow">01 · Position</p>
               <Reveal>
-                <p className="font-display text-[clamp(2.5rem,6vw,5rem)] leading-[1.05] tracking-[-0.025em] text-balance">
-                  Most brokers sell the same three suppliers and call it
-                  {" "}<span className="italic text-[color:var(--color-amber-deep)]">choice.</span>
-                  {" "}We quote every supplier currently active on your meter and call that
-                  {" "}<span className="italic">the actual market</span>.
+                <h2 className="mt-4 font-display text-[clamp(2rem,5vw,4rem)] leading-[1.05] tracking-[-0.025em] text-balance">
+                  Most brokers sell the same three suppliers and call it <span className="italic text-[color:var(--color-amber-deep)]">choice.</span>
+                </h2>
+              </Reveal>
+              <Reveal delay={0.05}>
+                <p className="mt-8 text-lg text-[color:var(--color-ink-muted)] leading-relaxed max-w-xl">
+                  We quote every supplier currently active on your meter and call that the actual market. No commission-led recommendations, no panel of three, no pretending three is twelve.
                 </p>
+              </Reveal>
+            </div>
+
+            <div className="lg:col-span-5">
+              <Reveal delay={0.1}>
+                <div className="relative aspect-[4/5] rounded-[28px] overflow-hidden">
+                  <img
+                    src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200&q=85&auto=format&fit=crop"
+                    alt="Modern UK office interior, the working environment for typical Energy Planner clients"
+                    loading="lazy"
+                    className="absolute inset-0 w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, transparent 50%, rgba(10,22,40,0.6) 100%)" }} />
+                  <div className="absolute bottom-6 left-6 right-6 text-white">
+                    <p className="text-[10px] uppercase tracking-[0.24em] opacity-80">Buyers we work with</p>
+                    <p className="mt-2 font-display text-xl tracking-tight">SMEs · multi-site groups · manufacturers · care · hospitality · academies</p>
+                  </div>
+                </div>
               </Reveal>
             </div>
           </div>
@@ -141,39 +167,41 @@ export default function HomePage() {
       </section>
 
       {/* BENTO SERVICES */}
-      <section className="py-24 lg:py-32">
+      <section className="py-20 lg:py-28 bg-[color:var(--color-bone-warm)] border-y border-[color:var(--color-line)]">
         <div className="container-x">
-          <div className="grid grid-cols-12 gap-6 mb-14 lg:mb-20">
-            <div className="col-span-12 lg:col-span-2">
-              <p className="eyebrow">02</p>
-              <p className="text-xs uppercase tracking-[0.22em] text-[color:var(--color-ink-muted)] mt-2">Services</p>
+          <div className="grid grid-cols-12 gap-6 mb-12 lg:mb-16">
+            <div className="col-span-12 lg:col-span-3">
+              <p className="eyebrow">02 · Services</p>
             </div>
-            <div className="col-span-12 lg:col-span-10">
+            <div className="col-span-12 lg:col-span-9">
               <Reveal>
-                <h2 className="font-display text-[clamp(2rem,4.5vw,3.75rem)] leading-[1.05] tracking-[-0.02em] text-balance">
+                <h2 className="font-display text-[clamp(1.875rem,4vw,3.25rem)] leading-[1.1] tracking-[-0.02em] text-balance">
                   Six disciplines. One operating model: buyer-first.
                 </h2>
               </Reveal>
             </div>
           </div>
 
-          {/* Bento grid */}
           <div className="grid grid-cols-1 md:grid-cols-6 gap-3 lg:gap-4">
-            {/* Big feature — Procurement (USP) */}
+            {/* Big feature — Procurement */}
             <Reveal className="md:col-span-4 md:row-span-2">
-              <Link href="/energy-procurement" className="group relative block h-full min-h-[420px] rounded-[28px] bg-[color:var(--color-ink)] text-white p-8 lg:p-12 overflow-hidden">
-                <div aria-hidden className="absolute -bottom-32 -right-20 w-[420px] h-[420px] rounded-full opacity-40 blur-3xl" style={{ background: "radial-gradient(closest-side, rgba(245,158,11,0.65), transparent 70%)" }} />
-                <div className="relative h-full flex flex-col justify-between">
-                  <div>
-                    <p className="text-xs uppercase tracking-[0.22em] text-[color:var(--color-amber)]">Featured · Risk-managed</p>
-                    <h3 className="mt-6 font-display text-4xl lg:text-5xl leading-[1.05] tracking-[-0.02em] text-white text-balance">
-                      Procurement strategy for businesses where energy is a line item that matters.
-                    </h3>
-                    <p className="mt-6 text-white/70 text-base lg:text-lg leading-relaxed max-w-md">
-                      Flex contracts, click strategies, basket procurement, partial fixed. Designed around your profile and your team&apos;s capacity. Not sold as bolt-on complexity.
-                    </p>
-                  </div>
-                  <div className="mt-10 flex items-center gap-3 text-white">
+              <Link href="/energy-procurement" className="group relative block h-full min-h-[480px] rounded-[28px] overflow-hidden">
+                <img
+                  src="https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=1400&q=85&auto=format&fit=crop"
+                  alt="Wind turbines on UK landscape at golden hour"
+                  loading="lazy"
+                  className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                />
+                <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, rgba(10,22,40,0.3) 0%, rgba(10,22,40,0.92) 80%)" }} />
+                <div className="relative h-full flex flex-col justify-end p-8 lg:p-12 text-white">
+                  <p className="text-xs uppercase tracking-[0.22em] text-[color:var(--color-amber)]">Featured · Risk-managed procurement</p>
+                  <h3 className="mt-5 font-display text-3xl lg:text-5xl leading-[1.05] tracking-[-0.02em] text-white text-balance max-w-xl">
+                    Procurement strategy for where energy is a line item that matters.
+                  </h3>
+                  <p className="mt-5 text-white/85 text-base lg:text-lg leading-relaxed max-w-lg">
+                    Flex contracts, click strategies, baskets, partial fixed. Built around your profile and your team&apos;s capacity.
+                  </p>
+                  <div className="mt-8 flex items-center gap-3">
                     <span className="text-base font-medium">Explore procurement</span>
                     <span className="w-10 h-10 rounded-full bg-[color:var(--color-amber)] text-[color:var(--color-ink)] flex items-center justify-center group-hover:rotate-45 transition-transform duration-300">
                       <ArrowRight size={16} />
@@ -190,11 +218,11 @@ export default function HomePage() {
               const Icon = s.icon;
               return (
                 <Reveal key={s.h} className="md:col-span-2">
-                  <Link href={s.h} className="group block h-full min-h-[200px] rounded-[28px] bg-[color:var(--color-bone-warm)] hover:bg-white border border-[color:var(--color-line)] p-7 transition-colors">
+                  <Link href={s.h} className="group block h-full min-h-[200px] rounded-[28px] bg-white hover:bg-[color:var(--color-bone)] border border-[color:var(--color-line)] p-7 transition-colors">
                     <Icon size={22} strokeWidth={1.5} className="text-[color:var(--color-amber-deep)]" />
                     <h3 className="mt-8 font-display text-2xl tracking-tight">{s.t}</h3>
                     <p className="mt-2 text-sm text-[color:var(--color-ink-muted)]">{s.b}</p>
-                    <span className="inline-flex items-center gap-1 mt-6 text-sm text-[color:var(--color-ink)] group-hover:gap-2 transition-all">Learn more <ArrowRight size={12} /></span>
+                    <span className="inline-flex items-center gap-1 mt-5 text-sm text-[color:var(--color-ink)] group-hover:gap-2 transition-all">Learn more <ArrowRight size={12} /></span>
                   </Link>
                 </Reveal>
               );
@@ -208,13 +236,13 @@ export default function HomePage() {
             ].map((s) => {
               const Icon = s.icon;
               return (
-                <Reveal key={s.h} className="md:col-span-3 lg:col-span-3 xl:col-span-3">
-                  <Link href={s.h} className="group block h-full min-h-[180px] rounded-[28px] border border-[color:var(--color-line)] bg-white hover:bg-[color:var(--color-bone-warm)] p-7 transition-colors">
+                <Reveal key={s.h} className="md:col-span-3">
+                  <Link href={s.h} className="group block h-full min-h-[170px] rounded-[28px] border border-[color:var(--color-line)] bg-white hover:bg-[color:var(--color-bone)] p-7 transition-colors">
                     <div className="flex items-start justify-between">
                       <Icon size={22} strokeWidth={1.5} className="text-[color:var(--color-amber-deep)]" />
                       <ArrowRight size={16} className="text-[color:var(--color-ink-muted)] group-hover:text-[color:var(--color-ink)] group-hover:translate-x-1 transition-all" />
                     </div>
-                    <h3 className="mt-7 font-display text-xl lg:text-2xl tracking-tight">{s.t}</h3>
+                    <h3 className="mt-6 font-display text-xl lg:text-2xl tracking-tight">{s.t}</h3>
                     <p className="mt-2 text-sm text-[color:var(--color-ink-muted)]">{s.b}</p>
                   </Link>
                 </Reveal>
@@ -224,40 +252,46 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* METHOD — sticky scroll */}
-      <section className="py-24 lg:py-32 bg-[color:var(--color-bone-warm)] border-y border-[color:var(--color-line)]">
+      {/* IMAGE-DRIVEN METHOD */}
+      <section className="py-20 lg:py-28">
         <div className="container-x">
-          <div className="grid grid-cols-12 gap-6 items-start">
-            <div className="col-span-12 lg:col-span-4 lg:sticky lg:top-32">
-              <p className="eyebrow">03</p>
-              <p className="text-xs uppercase tracking-[0.22em] text-[color:var(--color-ink-muted)] mt-2 mb-6">Method</p>
+          <div className="grid lg:grid-cols-12 gap-12 lg:gap-16">
+            {/* Image column */}
+            <div className="lg:col-span-5">
               <Reveal>
-                <h2 className="font-display text-[clamp(2rem,4vw,3.5rem)] leading-[1.05] tracking-[-0.02em] text-balance">
-                  Four steps. No 30-page proposal. No long sales meeting.
-                </h2>
-              </Reveal>
-              <Reveal delay={0.05}>
-                <p className="mt-6 text-[color:var(--color-ink-muted)] text-lg leading-relaxed">
-                  A short call, a recent bill, a single Letter of Authority. From there we run the market for you and stay in the background until renewal.
-                </p>
+                <div className="relative aspect-[3/4] rounded-[28px] overflow-hidden lg:sticky lg:top-32">
+                  <img
+                    src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=1200&q=85&auto=format&fit=crop"
+                    alt="Person reviewing energy contract documents at desk"
+                    loading="lazy"
+                    className="absolute inset-0 w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0" style={{ background: "linear-gradient(160deg, transparent 40%, rgba(10,22,40,0.7) 100%)" }} />
+                  <div className="absolute bottom-8 left-8 right-8 text-white">
+                    <p className="text-[10px] uppercase tracking-[0.24em] text-[color:var(--color-amber)]">Our process</p>
+                    <p className="mt-3 font-display text-2xl tracking-tight">Four steps. No 30-page proposal.</p>
+                  </div>
+                </div>
               </Reveal>
             </div>
 
-            <div className="col-span-12 lg:col-span-8 lg:pl-12">
+            {/* Steps column */}
+            <div className="lg:col-span-7">
+              <p className="eyebrow">03 · Method</p>
               {[
-                { num: "01", title: "Discovery", body: "Fifteen minutes. Meters, sites, current supplier, renewal date, anything broken. We send a one-page Letter of Authority by e-sign." },
-                { num: "02", title: "Whole-of-market quote", body: "We pull live prices from every supplier currently quoting on your meter and present them side by side. Our fee is shown on every line." },
-                { num: "03", title: "Recommendation", body: "We tell you which contract we would sign in your position, and why. If your existing supplier is the right answer, we say that too." },
-                { num: "04", title: "Manage to renewal", body: "Bills validated for the term. Renewal warning at month 18 of a 24-month contract. The next negotiation starts on your timing, not the contract end-date." },
+                { num: "01", title: "Discovery", body: "Fifteen minutes. Meters, sites, supplier, renewal date. We send a one-page Letter of Authority by e-sign." },
+                { num: "02", title: "Whole-of-market quote", body: "Live prices from every supplier currently quoting your meter. Our fee on every line." },
+                { num: "03", title: "Recommendation", body: "Which contract we would sign in your position, and why. If your existing supplier is the right answer, we say that." },
+                { num: "04", title: "Manage to renewal", body: "Bills validated for the term. Six-month renewal warning. The next negotiation starts on your timing." },
               ].map((step, i) => (
                 <Reveal key={step.num} delay={i * 0.04}>
-                  <div className="grid grid-cols-12 gap-6 py-10 lg:py-14 border-t border-[color:var(--color-line)] first:border-t-0 first:pt-0">
-                    <div className="col-span-12 sm:col-span-2">
-                      <span className="font-display text-5xl lg:text-6xl text-[color:var(--color-amber-deep)] leading-none">{step.num}</span>
+                  <div className="grid grid-cols-12 gap-4 py-8 lg:py-10 border-t border-[color:var(--color-line)] first:border-t-0 first:pt-0">
+                    <div className="col-span-2">
+                      <span className="font-display text-4xl lg:text-5xl text-[color:var(--color-amber-deep)] leading-none">{step.num}</span>
                     </div>
-                    <div className="col-span-12 sm:col-span-10">
+                    <div className="col-span-10">
                       <h3 className="font-display text-2xl lg:text-3xl tracking-tight">{step.title}</h3>
-                      <p className="mt-4 text-[color:var(--color-ink-muted)] text-lg leading-relaxed max-w-2xl">{step.body}</p>
+                      <p className="mt-3 text-[color:var(--color-ink-muted)] leading-relaxed">{step.body}</p>
                     </div>
                   </div>
                 </Reveal>
@@ -267,17 +301,24 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* PULL QUOTE / PHILOSOPHY */}
-      <section className="py-24 lg:py-32">
-        <div className="container-x">
+      {/* PULL QUOTE OVER PHOTOGRAPHY */}
+      <section className="relative py-32 lg:py-48 overflow-hidden">
+        <img
+          src="https://images.unsplash.com/photo-1581094289810-adf5d25690e3?w=2000&q=85&auto=format&fit=crop"
+          alt="Electricity pylons at dusk, abstract energy infrastructure"
+          loading="lazy"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, rgba(10,22,40,0.75) 0%, rgba(10,22,40,0.85) 100%)" }} />
+
+        <div className="container-x relative">
           <Reveal>
-            <blockquote className="max-w-5xl mx-auto text-center">
+            <blockquote className="max-w-5xl mx-auto text-center text-white">
               <p className="font-display text-[clamp(2rem,5vw,4rem)] leading-[1.08] tracking-[-0.025em] text-balance">
-                &ldquo;Buying energy well is a discipline.
-                {" "}<span className="italic text-[color:var(--color-amber-deep)]">It is not</span>
-                {" "}what gets sold as one.&rdquo;
+                &ldquo;Buying energy well is a discipline.<br />
+                <span className="italic text-[color:var(--color-amber)]">It is not</span> what gets sold as one.&rdquo;
               </p>
-              <footer className="mt-10 text-xs uppercase tracking-[0.22em] text-[color:var(--color-ink-muted)]">
+              <footer className="mt-12 text-xs uppercase tracking-[0.24em] text-white/60">
                 Energy Planner · House view
               </footer>
             </blockquote>
@@ -285,38 +326,30 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* FAQ */}
-      <section className="py-24 lg:py-32 bg-[color:var(--color-bone-warm)] border-y border-[color:var(--color-line)]">
+      {/* FAQ — trimmed */}
+      <section className="py-24 lg:py-32 bg-[color:var(--color-bone-warm)] border-b border-[color:var(--color-line)]">
         <div className="container-x">
-          <div className="grid grid-cols-12 gap-6 mb-14 lg:mb-20">
-            <div className="col-span-12 lg:col-span-2">
-              <p className="eyebrow">04</p>
-              <p className="text-xs uppercase tracking-[0.22em] text-[color:var(--color-ink-muted)] mt-2">Questions</p>
+          <div className="grid lg:grid-cols-12 gap-12 mb-14">
+            <div className="lg:col-span-4">
+              <p className="eyebrow">04 · Questions</p>
+              <h2 className="mt-4 font-display text-[clamp(1.875rem,3.5vw,3rem)] leading-[1.1] tracking-[-0.02em]">
+                Quick answers to the questions buyers ask.
+              </h2>
+              <Link href="/guides" className="inline-flex items-center gap-2 mt-8 text-sm font-medium hover:text-[color:var(--color-amber-deep)]">
+                Read the full guides <ArrowRight size={14} />
+              </Link>
             </div>
-            <div className="col-span-12 lg:col-span-10">
-              <Reveal>
-                <h2 className="font-display text-[clamp(2rem,4.5vw,3.75rem)] leading-[1.05] tracking-[-0.02em] text-balance">
-                  Straight answers to the questions buyers actually ask.
-                </h2>
-              </Reveal>
+
+            <div className="lg:col-span-8 grid sm:grid-cols-2 gap-x-10 gap-y-10">
+              {faqs.map((f, i) => (
+                <Reveal key={f.q} delay={(i % 2) * 0.05}>
+                  <div>
+                    <h3 className="font-display text-lg lg:text-xl tracking-tight">{f.q}</h3>
+                    <p className="mt-3 text-[color:var(--color-ink-muted)] text-sm leading-relaxed">{f.a}</p>
+                  </div>
+                </Reveal>
+              ))}
             </div>
-          </div>
-
-          <div className="grid lg:grid-cols-2 gap-x-16 gap-y-12">
-            {faqs.map((f, i) => (
-              <Reveal key={f.q} delay={(i % 2) * 0.05}>
-                <div>
-                  <h3 className="font-display text-2xl tracking-tight">{f.q}</h3>
-                  <p className="mt-4 text-[color:var(--color-ink-muted)] text-base leading-relaxed">{f.a}</p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-
-          <div className="mt-16">
-            <Link href="/guides" className="inline-flex items-center gap-2 text-sm font-medium hover:text-[color:var(--color-amber-deep)]">
-              Read the full guides <ArrowRight size={14} />
-            </Link>
           </div>
         </div>
       </section>
